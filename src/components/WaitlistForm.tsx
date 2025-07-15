@@ -28,15 +28,15 @@ export const WaitlistForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md group">
       <div className="relative flex-1">
-        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 group-focus-within:text-primary transition-colors duration-300" />
         <Input
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="pl-10 bg-card border-muted"
+          className="pl-10 bg-card border-muted hover:border-primary/50 focus:border-primary transition-all duration-300 focus:scale-105"
           required
         />
       </div>
@@ -45,16 +45,16 @@ export const WaitlistForm = () => {
         variant="hero" 
         size="lg"
         disabled={isLoading}
-        className="whitespace-nowrap"
+        className="whitespace-nowrap hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 disabled:hover:scale-100"
       >
         {isLoading ? (
           <>
             <Sparkles className="w-4 h-4 animate-spin" />
-            Joining...
+            <span className="animate-pulse">Joining...</span>
           </>
         ) : (
           <>
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 group-hover:animate-wiggle" />
             Join Waitlist
           </>
         )}
